@@ -74,13 +74,13 @@ export default async function AdminLayout({
                 <Home className="h-5 w-5" />
                 Lihat Website
               </Link>
-              <form action="/api/auth/sign-out" method="POST">
+              <form action="/logout" method="POST">
                 <button 
                   type="submit"
                   className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-red-500 font-medium transition-all hover:bg-red-500/10"
                 >
                   <LogOut className="h-5 w-5" />
-                  Log Out
+                  Logout
                 </button>
               </form>
             </div>

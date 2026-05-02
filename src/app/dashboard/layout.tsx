@@ -58,11 +58,11 @@ export default async function DashboardLayout({
             </Link>
             <div className="pt-8 mt-4 border-t border-border">
               <Link 
-                href="/" 
+                href="/logout" 
                 className="flex items-center gap-3 px-3 py-2 rounded-lg text-destructive font-medium transition-colors hover:bg-destructive/10"
               >
                 <LogOut className="h-5 w-5" />
-                Keluar
+                Logout
               </Link>
             </div>
           </nav>
