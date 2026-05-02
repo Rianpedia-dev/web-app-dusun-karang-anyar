@@ -38,24 +38,24 @@ export default async function AdminDashboard() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <StatCard 
           title="Total Produk" 
-          value={stats.totalProducts} 
+          value={stats.totalProducts ?? 0} 
           icon={Package} 
         />
         <StatCard 
           title="Klik WhatsApp" 
-          value={stats.totalContacts} 
+          value={stats.totalContacts ?? 0} 
           icon={MessageSquare} 
           description="Peminat menghubungi penjual"
         />
         <StatCard 
           title="Total Kunjungan" 
-          value={stats.totalViews} 
+          value={stats.totalViews ?? 0} 
           icon={Eye} 
           description="Total dilihat pengunjung"
         />
         <StatCard 
           title="Total Admin" 
-          value={stats.totalAdmins} 
+          value={stats.totalAdmins ?? 0} 
           icon={Shield} 
         />
       </div>
