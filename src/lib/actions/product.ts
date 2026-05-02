@@ -22,12 +22,13 @@ export async function getProducts(options: {
       imageUrl: products.imageUrl,
       sellerId: products.sellerId,
       sellerName: sql<string>`COALESCE(${products.sellerName}, ${users.name})`,
-      sellerLocation: users.phone,
+      sellerLocation: sql<string>`'Dusun Karang Anyar'`,
       isApproved: products.isApproved,
       createdAt: products.createdAt,
     })
     .from(products)
-    .leftJoin(users, eq(products.sellerId, users.id));
+    .leftJoin(users, eq(products.sellerId, users.id))
+    .$dynamic();
 
     const conditions = [];
     if (approvedOnly) conditions.push(eq(products.isApproved, true));
@@ -56,6 +57,7 @@ export async function getProductById(id: string) {
       imageUrl: products.imageUrl,
       sellerId: products.sellerId,
       sellerName: sql<string>`COALESCE(${products.sellerName}, ${users.name})`,
+      sellerLocation: sql<string>`'Dusun Karang Anyar'`,
       sellerContact: products.contact,
       isApproved: products.isApproved,
       createdAt: products.createdAt,

@@ -42,13 +42,13 @@ export default async function DashboardHome() {
         />
         <StatCard 
           title="Total Dilihat" 
-          value={stats.totalViews} 
+          value={stats.totalViews ?? 0} 
           icon={Eye} 
           description="Akumulasi kunjungan"
         />
         <StatCard 
           title="Klik Kontak WA" 
-          value={stats.totalContacts} 
+          value={stats.totalContacts ?? 0} 
           icon={MousePointerClick} 
           description="Interaksi pembeli"
         />
@@ -102,7 +102,7 @@ export default async function DashboardHome() {
                   <div key={product.id} className="flex items-center gap-4">
                     <div className="w-10 h-10 rounded-md bg-muted overflow-hidden flex-shrink-0">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={product.imageUrl} alt={product.name} className="w-full h-full object-cover" />
+                      <img src={product.imageUrl || undefined} alt={product.name} className="w-full h-full object-cover" />
                     </div>
                     <div className="flex-1 overflow-hidden">
                       <p className="text-sm font-medium truncate">{product.name}</p>

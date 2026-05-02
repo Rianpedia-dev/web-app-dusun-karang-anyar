@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Search, MoreHorizontal, Edit, Trash2, Eye, CheckCircle, XCircle } from "lucide-react";
 import { formatRupiah } from "@/components/product-card";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { deleteProduct, approveProduct, rejectProduct } from "@/lib/actions/product";
 import { useRouter } from "next/navigation";
@@ -83,7 +84,7 @@ export function MyProductList({ initialProducts, isAdmin = false }: { initialPro
                       <div className="h-10 w-10 rounded overflow-hidden bg-muted flex-shrink-0 border">
                         {product.imageUrl ? (
                           // eslint-disable-next-line @next/next/no-img-element
-                          <img src={product.imageUrl} alt={product.name} className="h-full w-full object-cover" />
+                          <img src={product.imageUrl || undefined} alt={product.name} className="h-full w-full object-cover" />
                         ) : (
                           <div className="h-full w-full flex items-center justify-center text-xs text-muted-foreground">No Img</div>
                         )}
@@ -110,7 +111,7 @@ export function MyProductList({ initialProducts, isAdmin = false }: { initialPro
                   </TableCell>
                   <TableCell className="text-right">
                     <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
+                      <DropdownMenuTrigger>
                         <Button variant="ghost" className="h-8 w-8 p-0">
                           <MoreHorizontal className="h-4 w-4" />
                         </Button>

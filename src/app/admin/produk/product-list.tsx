@@ -67,7 +67,7 @@ export function AdminProductList({ initialProducts }: { initialProducts: any[] }
                       <div className="h-10 w-10 rounded-lg overflow-hidden bg-muted flex-shrink-0 border border-border">
                         {product.imageUrl ? (
                           // eslint-disable-next-line @next/next/no-img-element
-                          <img src={product.imageUrl} alt={product.name} className="h-full w-full object-cover" />
+                          <img src={product.imageUrl || undefined} alt={product.name} className="h-full w-full object-cover" />
                         ) : (
                           <div className="h-full w-full flex items-center justify-center text-muted-foreground/40">
                             No Image

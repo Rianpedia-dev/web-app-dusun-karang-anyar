@@ -3,16 +3,16 @@ export type Product = {
   name: string;
   description: string;
   price: number;
-  category: "Pertanian" | "Peternakan" | "Olahan";
-  imageUrl: string;
+  category: string;
+  imageUrl: string | null;
   sellerId: string;
   sellerName: string;
-  sellerLocation: string;
-  sellerContact: string;
-  views: number;
-  contactClicks: number;
+  sellerLocation?: string | null;
+  sellerContact?: string | null;
+  views?: number;
+  contactClicks?: number;
   isApproved: boolean;
-  createdAt: string;
+  createdAt: string | Date;
 };
 
 export const MOCK_PRODUCTS: Product[] = [

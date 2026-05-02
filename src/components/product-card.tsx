@@ -31,7 +31,7 @@ export function ProductCard({ product }: ProductCardProps) {
           
           {product.imageUrl ? (
             <img
-              src={product.imageUrl}
+              src={product.imageUrl || undefined}
               alt={product.name}
               className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
             />

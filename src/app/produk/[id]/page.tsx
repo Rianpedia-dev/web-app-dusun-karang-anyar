@@ -62,7 +62,7 @@ export default async function DetailProduk({ params }: DetailProdukProps) {
           <div className="relative aspect-square md:aspect-[4/3] lg:aspect-square rounded-3xl overflow-hidden bg-muted shadow-xl border border-border/40">
             {product.imageUrl ? (
               <img 
-                src={product.imageUrl} 
+                src={product.imageUrl || undefined} 
                 alt={product.name}
                 className="object-cover w-full h-full"
               />
