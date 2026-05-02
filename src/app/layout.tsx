@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
+import { Toaster } from "sonner";
 
 const fontSans = Inter({
   variable: "--font-sans",
@@ -20,6 +19,10 @@ export const metadata: Metadata = {
   description: "Marketplace produk pertanian dan peternakan dari Dusun Karang Anyar.",
 };
 
+import { LayoutWrapper } from "@/components/layout-wrapper";
+
+import { ThemeProvider } from "@/components/theme-provider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,16 +31,23 @@ export default function RootLayout({
   return (
     <html
       lang="id"
+      suppressHydrationWarning
       className={`${fontSans.variable} ${fontSerif.variable} antialiased h-full`}
     >
-      <body className="min-h-full flex flex-col font-sans">
-        <TooltipProvider>
-          <Navbar />
-          <main className="flex-1">
-            {children}
-          </main>
-          <Footer />
-        </TooltipProvider>
+      <body className="min-h-full flex flex-col font-sans bg-background text-foreground transition-colors duration-300">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <TooltipProvider>
+            <LayoutWrapper>
+              {children}
+            </LayoutWrapper>
+            <Toaster position="top-center" richColors />
+          </TooltipProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

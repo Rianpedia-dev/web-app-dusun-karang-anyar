@@ -1,59 +1,98 @@
 import Link from "next/link";
-import { LayoutDashboard, Users, Package, FileCheck, LogOut, ShieldCheck } from "lucide-react";
+import Image from "next/image";
+import { LayoutDashboard, Users, Package, FileCheck, LogOut, Home } from "lucide-react";
+import { getUser } from "@/lib/actions/auth";
+import { redirect } from "next/navigation";
 
-export default function AdminLayout({
+export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const user = await getUser();
+
+  // Security check: Only allow admins
+  if (!user || user.profile?.role !== "admin") {
+    redirect("/login");
+  }
+
   return (
-    <div className="flex min-h-[calc(100vh-4rem)] flex-col md:flex-row">
+    <div className="flex min-h-[calc(100vh-4rem)] flex-col md:flex-row bg-background transition-colors duration-300">
       {/* Sidebar Desktop */}
-      <aside className="w-full md:w-64 bg-slate-900 text-slate-100 border-r flex-shrink-0 md:min-h-[calc(100vh-4rem)]">
+      <aside className="w-full md:w-64 bg-card border-r flex-shrink-0 md:sticky md:top-0 md:h-[calc(100vh-4rem)] overflow-y-auto">
         <div className="p-6">
-          <div className="flex items-center gap-2 font-bold text-lg mb-8">
-            <ShieldCheck className="h-5 w-5 text-blue-400" />
-            <span>Admin Panel</span>
+          <div className="flex items-center gap-4 font-bold text-xl mb-10 text-card-foreground">
+            <div className="relative h-12 w-12 overflow-hidden rounded-lg shadow-lg border border-border bg-background p-2">
+              <Image 
+                src="/favicon.ico" 
+                alt="Logo Dusun Karang Anyar" 
+                fill
+                className="object-contain"
+              />
+            </div>
+            <div className="flex flex-col leading-tight">
+              <span>Super Admin</span>
+              <span className="text-[10px] font-medium text-primary uppercase tracking-widest">Dashboard</span>
+            </div>
           </div>
-          <nav className="space-y-2">
+          
+          <nav className="space-y-1.5">
             <Link 
               href="/admin" 
-              className="flex items-center gap-3 px-3 py-2 rounded-lg bg-slate-800 text-white font-medium transition-colors hover:bg-slate-700"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary font-medium border border-primary/20 shadow-sm"
             >
               <LayoutDashboard className="h-5 w-5" />
               Dashboard
             </Link>
             <Link 
               href="/admin/produk" 
-              className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 font-medium transition-colors hover:bg-slate-800 hover:text-white"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-muted-foreground font-medium transition-all hover:bg-muted hover:text-foreground"
             >
-              <FileCheck className="h-5 w-5" />
-              Moderasi Produk
+              <Package className="h-5 w-5" />
+              Semua Produk
             </Link>
             <Link 
               href="/admin/pengguna" 
-              className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 font-medium transition-colors hover:bg-slate-800 hover:text-white"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-muted-foreground font-medium transition-all hover:bg-muted hover:text-foreground"
             >
               <Users className="h-5 w-5" />
               Data Pengguna
             </Link>
+            <Link 
+              href="/admin/konten" 
+              className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-muted-foreground font-medium transition-all hover:bg-muted hover:text-foreground"
+            >
+              <FileCheck className="h-5 w-5" />
+              Kelola Konten
+            </Link>
             
-            <div className="pt-8 mt-4 border-t border-slate-800">
+            <div className="pt-8 mt-6 border-t border-border space-y-1.5">
               <Link 
                 href="/" 
-                className="flex items-center gap-3 px-3 py-2 rounded-lg text-red-400 font-medium transition-colors hover:bg-red-400/10"
+                className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-muted-foreground font-medium transition-all hover:bg-muted hover:text-foreground"
               >
-                <LogOut className="h-5 w-5" />
-                Keluar
+                <Home className="h-5 w-5" />
+                Lihat Website
               </Link>
+              <form action="/api/auth/sign-out" method="POST">
+                <button 
+                  type="submit"
+                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-red-500 font-medium transition-all hover:bg-red-500/10"
+                >
+                  <LogOut className="h-5 w-5" />
+                  Log Out
+                </button>
+              </form>
             </div>
           </nav>
         </div>
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 p-6 md:p-8 bg-slate-50">
-        {children}
+      <main className="flex-1 p-6 md:p-10">
+        <div className="mx-auto max-w-7xl">
+          {children}
+        </div>
       </main>
     </div>
   );

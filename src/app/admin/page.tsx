@@ -1,59 +1,79 @@
 import { StatCard } from "@/components/stat-card";
-import { Package, Users, Eye, AlertCircle } from "lucide-react";
-import { MOCK_STATS, MOCK_PRODUCTS } from "@/lib/mock-data";
+import { Package, Shield, Eye, MessageSquare, Plus, ArrowUpRight } from "lucide-react";
+import { getAdminStats, getRecentActivities, getChartData } from "@/lib/actions/analytics";
+import { getProducts } from "@/lib/actions/product";
+import { StatsChart } from "@/components/stats-chart";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
-export default function AdminDashboard() {
-  const pendingProducts = MOCK_PRODUCTS.filter(p => !p.isApproved).length;
+export default async function AdminDashboard() {
+  const stats = await getAdminStats();
+  const allProducts = await getProducts({ approvedOnly: false });
+  const recentActivities = await getRecentActivities();
+  const chartData = await getChartData();
+  const pendingCount = allProducts.filter(p => !p.isApproved).length;
 
   return (
     <div className="space-y-8">
-      <div>
-        <h1 className="text-3xl font-serif font-bold text-slate-900 tracking-tight">Dashboard Admin</h1>
-        <p className="text-slate-500">Ringkasan aktivitas platform Dusun Karang Anyar.</p>
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-serif font-bold text-foreground tracking-tight">Dashboard Super Admin</h1>
+          <p className="text-muted-foreground">Selamat datang kembali. Berikut adalah ringkasan performa platform hari ini.</p>
+        </div>
+        <div className="flex items-center gap-3">
+          <Button asChild variant="outline" className="hidden sm:flex">
+            <Link href="/admin/pengguna">
+              Kelola Pengguna
+            </Link>
+          </Button>
+          <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
+            <Link href="/admin/produk">
+              Lihat Semua Produk
+            </Link>
+          </Button>
+        </div>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <StatCard 
           title="Total Produk" 
-          value={MOCK_STATS.totalProducts} 
+          value={stats.totalProducts} 
           icon={Package} 
         />
         <StatCard 
-          title="Total Pengguna" 
-          value={MOCK_STATS.totalSellers} 
-          icon={Users} 
+          title="Klik WhatsApp" 
+          value={stats.totalContacts} 
+          icon={MessageSquare} 
+          description="Peminat menghubungi penjual"
         />
         <StatCard 
           title="Total Kunjungan" 
-          value={MOCK_STATS.totalViews} 
+          value={stats.totalViews} 
           icon={Eye} 
+          description="Total dilihat pengunjung"
         />
         <StatCard 
-          title="Menunggu Review" 
-          value={pendingProducts} 
-          icon={AlertCircle} 
-          description="Produk butuh persetujuan"
+          title="Total Admin" 
+          value={stats.totalAdmins} 
+          icon={Shield} 
         />
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="col-span-4 shadow-sm border-slate-200">
+      <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-7">
+        <Card className="col-span-1 md:col-span-2 lg:col-span-4 shadow-sm border-border">
           <CardHeader>
             <CardTitle>Statistik Platform</CardTitle>
             <CardDescription>
-              Pertumbuhan produk dan pengguna 30 hari terakhir.
+              Pertumbuhan produk dan pengunjung 30 hari terakhir.
             </CardDescription>
           </CardHeader>
           <CardContent>
-            {/* Placeholder for chart */}
-            <div className="h-[300px] w-full bg-slate-100 rounded-lg flex items-center justify-center border border-dashed border-slate-300">
-              <span className="text-slate-400 text-sm">Grafik Statistik Akan Ditampilkan Di Sini</span>
-            </div>
+            <StatsChart data={chartData} />
           </CardContent>
         </Card>
         
-        <Card className="col-span-3 shadow-sm border-slate-200">
+        <Card className="col-span-1 md:col-span-2 lg:col-span-3 shadow-sm border-border">
           <CardHeader>
             <CardTitle>Aktivitas Terbaru</CardTitle>
             <CardDescription>
@@ -62,31 +82,26 @@ export default function AdminDashboard() {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <div className="flex items-center gap-4 text-sm">
-                <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                <div className="flex-1">
-                  <p className="font-medium text-slate-900">Produk Baru Ditambahkan</p>
-                  <p className="text-slate-500">Beras Organik oleh Pak Budi</p>
-                </div>
-                <div className="text-slate-400">10 mnt lalu</div>
-              </div>
-              <div className="flex items-center gap-4 text-sm">
-                <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                <div className="flex-1">
-                  <p className="font-medium text-slate-900">Pengguna Baru</p>
-                  <p className="text-slate-500">Bu Siti mendaftar sebagai penjual</p>
-                </div>
-                <div className="text-slate-400">1 jam lalu</div>
-              </div>
-              <div className="flex items-center gap-4 text-sm">
-                <div className="w-2 h-2 rounded-full bg-amber-500"></div>
-                <div className="flex-1">
-                  <p className="font-medium text-slate-900">Produk Di-approve</p>
-                  <p className="text-slate-500">Kopi Robusta oleh Kang Herman</p>
-                </div>
-                <div className="text-slate-400">2 jam lalu</div>
-              </div>
+              {recentActivities.length === 0 ? (
+                <p className="text-sm text-muted-foreground text-center py-4">Belum ada aktivitas terbaru.</p>
+              ) : (
+                recentActivities.map((activity, i) => (
+                  <div key={i} className="flex items-center gap-4 text-sm">
+                    <div className="w-2 h-2 rounded-full bg-primary"></div>
+                    <div className="flex-1">
+                      <p className="font-medium text-foreground">{activity.title}</p>
+                      <p className="text-muted-foreground">{activity.description}</p>
+                    </div>
+                    <div className="text-muted-foreground opacity-60 text-xs">
+                      {new Date(activity.time).toLocaleDateString("id-ID")}
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
+            <Button variant="ghost" className="w-full mt-4 text-primary text-xs" asChild>
+              <Link href="/admin/produk">Lihat Semua Aktivitas <ArrowUpRight className="ml-1 h-3 w-3" /></Link>
+            </Button>
           </CardContent>
         </Card>
       </div>

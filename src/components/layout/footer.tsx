@@ -1,17 +1,23 @@
 import Link from "next/link";
-import { Sprout, MapPin, Phone, Mail } from "lucide-react";
+import Image from "next/image";
+import { MapPin, Phone, Mail } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-primary-foreground border-t pt-12 pb-8">
+    <footer className="bg-muted/30 border-t pt-12 pb-8 transition-colors duration-300">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div className="md:col-span-1">
-            <Link href="/" className="flex items-center space-x-2 mb-4">
-              <div className="bg-primary text-primary-foreground p-1.5 rounded-md">
-                <Sprout className="h-5 w-5" />
+            <Link href="/" className="flex items-center space-x-3 mb-4">
+              <div className="relative h-10 w-10 overflow-hidden rounded-md border border-border bg-background p-1.5 shadow-md">
+                <Image 
+                  src="/favicon.ico" 
+                  alt="Logo Dusun Karang Anyar" 
+                  fill
+                  className="object-contain"
+                />
               </div>
-              <span className="font-serif font-bold text-lg">
+              <span className="font-serif font-bold text-xl">
                 Karang Anyar
               </span>
             </Link>
@@ -36,7 +42,7 @@ export function Footer() {
                 <Link href="/tentang" className="hover:text-primary transition-colors">Tentang Dusun</Link>
               </li>
               <li>
-                <Link href="/login" className="hover:text-primary transition-colors">Masuk Penjual</Link>
+                <Link href="/login" className="hover:text-primary transition-colors">Login</Link>
               </li>
             </ul>
           </div>
@@ -77,6 +83,7 @@ export function Footer() {
 
         <div className="pt-8 border-t text-center text-sm text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} Dusun Karang Anyar. Hak Cipta Dilindungi.</p>
+          <p className="mt-1 font-medium opacity-80 italic">by Kelompok 8 KKN UNPAL Angkatan ke-XL</p>
         </div>
       </div>
     </footer>

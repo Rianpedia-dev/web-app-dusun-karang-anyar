@@ -1,18 +1,25 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
-import { Menu, Sprout } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="bg-primary text-primary-foreground p-1.5 rounded-md">
-              <Sprout className="h-5 w-5" />
+          <Link href="/" className="flex items-center space-x-3">
+            <div className="relative h-10 w-10 overflow-hidden rounded-full border border-border shadow-md bg-background p-1">
+              <Image 
+                src="/favicon.ico" 
+                alt="Logo Dusun Karang Anyar" 
+                fill
+                className="object-contain"
+              />
             </div>
-            <span className="font-serif font-bold text-lg hidden sm:inline-block">
+            <span className="font-serif font-bold text-xl hidden sm:inline-block">
               Karang Anyar
             </span>
           </Link>
@@ -31,43 +38,72 @@ export function Navbar() {
           </Link>
         </nav>
 
-        <div className="flex items-center gap-4">
-          <div className="hidden md:flex items-center gap-2">
-            <Button variant="outline" asChild>
-              <Link href="/login">Masuk</Link>
-            </Button>
-            <Button asChild>
-              <Link href="/register">Daftar</Link>
-            </Button>
-          </div>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
 
           {/* Mobile Navigation */}
           <Sheet>
-            <SheetTrigger className="md:hidden inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium hover:bg-muted hover:text-foreground h-8 w-8">
+            <SheetTrigger className="md:hidden inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium hover:bg-muted hover:text-foreground h-8 w-8 outline-none border-none">
               <Menu className="h-6 w-6" />
               <span className="sr-only">Toggle Menu</span>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+            <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-background p-0 flex flex-col border-l">
               <SheetTitle className="sr-only">Menu Navigasi</SheetTitle>
-              <nav className="flex flex-col gap-4 mt-8">
-                <Link href="/" className="text-lg font-medium hover:text-primary transition-colors">
+              <div className="p-6 border-b">
+                <Link href="/" className="flex items-center space-x-3">
+                  <div className="relative h-10 w-10 overflow-hidden rounded-full border border-border shadow-md bg-background p-1">
+                    <Image 
+                      src="/favicon.ico" 
+                      alt="Logo Dusun Karang Anyar" 
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <span className="font-serif font-bold text-xl">
+                    Karang Anyar
+                  </span>
+                </Link>
+              </div>
+              
+              <nav className="flex flex-col p-6 gap-2">
+                <SheetClose 
+                  render={
+                    <Link 
+                      href="/" 
+                      className="flex items-center px-4 py-3 rounded-xl text-lg font-medium hover:bg-primary/5 hover:text-primary transition-all border border-transparent hover:border-primary/10"
+                    />
+                  }
+                >
                   Beranda
-                </Link>
-                <Link href="/produk" className="text-lg font-medium hover:text-primary transition-colors">
+                </SheetClose>
+                <SheetClose 
+                  render={
+                    <Link 
+                      href="/produk" 
+                      className="flex items-center px-4 py-3 rounded-xl text-lg font-medium hover:bg-primary/5 hover:text-primary transition-all border border-transparent hover:border-primary/10"
+                    />
+                  }
+                >
                   Katalog Produk
-                </Link>
-                <Link href="/tentang" className="text-lg font-medium hover:text-primary transition-colors">
+                </SheetClose>
+                <SheetClose 
+                  render={
+                    <Link 
+                      href="/tentang" 
+                      className="flex items-center px-4 py-3 rounded-xl text-lg font-medium hover:bg-primary/5 hover:text-primary transition-all border border-transparent hover:border-primary/10"
+                    />
+                  }
+                >
                   Tentang Dusun
-                </Link>
-                <div className="flex flex-col gap-2 mt-4">
-                  <Button variant="outline" className="w-full justify-start" asChild>
-                    <Link href="/login">Masuk</Link>
-                  </Button>
-                  <Button className="w-full justify-start" asChild>
-                    <Link href="/register">Daftar</Link>
-                  </Button>
-                </div>
+                </SheetClose>
               </nav>
+
+              <div className="mt-auto p-6 border-t bg-muted/20">
+                <p className="text-xs text-muted-foreground text-center">
+                  &copy; {new Date().getFullYear()} Dusun Karang Anyar<br/>
+                  Etalase Digital Desa
+                </p>
+              </div>
             </SheetContent>
           </Sheet>
         </div>

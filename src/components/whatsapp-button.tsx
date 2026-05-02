@@ -2,24 +2,25 @@
 
 import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
-import { type Product } from "@/lib/mock-data";
+import { trackContactClick } from "@/lib/actions/analytics";
 
 interface WhatsAppButtonProps {
-  product: Product;
+  product: any;
   className?: string;
 }
 
 export function WhatsAppButton({ product, className = "" }: WhatsAppButtonProps) {
-  const handleContact = () => {
-    // Format the phone number: remove leading 0, ensure it starts with country code, etc.
-    // Assuming sellerContact is already in format like '62812...'
+  const handleContact = async () => {
+    // Track the click
+    await trackContactClick(product.id);
+    
+    // Format the phone number
     const phoneNumber = product.sellerContact;
     const message = `Halo ${product.sellerName}, saya melihat produk *${product.name}* di WebApp Marketplace Dusun Karang Anyar. Apakah produk ini masih tersedia?`;
     
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     
-    // Open WhatsApp in a new tab
     window.open(whatsappUrl, "_blank");
   };
 

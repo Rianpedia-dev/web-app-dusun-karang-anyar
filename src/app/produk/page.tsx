@@ -1,36 +1,26 @@
-"use client";
-
-import { useState } from "react";
-import { MOCK_PRODUCTS } from "@/lib/mock-data";
+import { getProducts } from "@/lib/actions/product";
 import { ProductCard } from "@/components/product-card";
 import { SearchBar } from "@/components/search-bar";
 import { CategoryFilter } from "@/components/category-filter";
 
-export default function ProdukKatalog() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+interface ProdukKatalogProps {
+  searchParams: Promise<{ 
+    search?: string; 
+    category?: string;
+  }>;
+}
 
-  // Get unique categories
-  const categories = Array.from(new Set(MOCK_PRODUCTS.map(p => p.category)));
+export default async function ProdukKatalog({ searchParams }: ProdukKatalogProps) {
+  const { search, category } = await searchParams;
 
-  // Filter products
-  const filteredProducts = MOCK_PRODUCTS.filter(product => {
-    // Must be approved
-    if (!product.isApproved) return false;
-    
-    // Filter by search term
-    if (searchTerm && !product.name.toLowerCase().includes(searchTerm.toLowerCase()) && 
-        !product.description.toLowerCase().includes(searchTerm.toLowerCase())) {
-      return false;
-    }
-    
-    // Filter by category
-    if (selectedCategory && product.category !== selectedCategory) {
-      return false;
-    }
-    
-    return true;
+  const products = await getProducts({
+    search: search,
+    category: category === "Semua" ? undefined : category,
+    approvedOnly: true
   });
+
+  // Get unique categories for filter (hardcoded for now as per schema logic or derived)
+  const categories = ["Pertanian", "Peternakan", "Olahan"];
 
   return (
     <div className="container mx-auto px-4 py-8 md:py-12">
@@ -41,21 +31,22 @@ export default function ProdukKatalog() {
         </div>
         
         <div className="w-full md:w-72">
-          <SearchBar onSearch={setSearchTerm} />
+          {/* Note: SearchBar needs to be a Client Component that updates URL */}
+          <SearchBar defaultValue={search} />
         </div>
       </div>
 
       <div className="mb-8">
+        {/* Note: CategoryFilter needs to be a Client Component that updates URL */}
         <CategoryFilter 
           categories={categories} 
-          selectedCategory={selectedCategory} 
-          onSelectCategory={setSelectedCategory} 
+          selectedCategory={category || "Semua"} 
         />
       </div>
 
-      {filteredProducts.length > 0 ? (
+      {products.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredProducts.map(product => (
+          {products.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>

@@ -1,27 +1,40 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
 interface CategoryFilterProps {
   categories: string[];
-  selectedCategory: string | null;
-  onSelectCategory: (category: string | null) => void;
+  selectedCategory: string;
   className?: string;
 }
 
 export function CategoryFilter({ 
   categories, 
   selectedCategory, 
-  onSelectCategory,
   className = ""
 }: CategoryFilterProps) {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
+  const handleSelect = (category: string) => {
+    const params = new URLSearchParams(searchParams);
+    if (category === "Semua") {
+      params.delete("category");
+    } else {
+      params.set("category", category);
+    }
+    replace(`${pathname}?${params.toString()}`);
+  };
+
   return (
     <div className={cn("flex flex-wrap gap-2", className)}>
       <button
-        onClick={() => onSelectCategory(null)}
+        onClick={() => handleSelect("Semua")}
         className={cn(
-          "px-4 py-2 rounded-full text-sm font-medium transition-colors border",
-          selectedCategory === null
+          "px-4 py-2 rounded-full text-sm font-medium transition-colors border cursor-pointer",
+          selectedCategory === "Semua"
             ? "bg-primary text-primary-foreground border-primary"
             : "bg-background text-foreground hover:bg-muted border-input"
         )}
@@ -31,9 +44,9 @@ export function CategoryFilter({
       {categories.map((category) => (
         <button
           key={category}
-          onClick={() => onSelectCategory(category)}
+          onClick={() => handleSelect(category)}
           className={cn(
-            "px-4 py-2 rounded-full text-sm font-medium transition-colors border",
+            "px-4 py-2 rounded-full text-sm font-medium transition-colors border cursor-pointer",
             selectedCategory === category
               ? "bg-primary text-primary-foreground border-primary"
               : "bg-background text-foreground hover:bg-muted border-input"

@@ -1,27 +1,41 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Leaf, Sprout, TrendingUp, Users } from "lucide-react";
-import { MOCK_PRODUCTS, MOCK_STATS } from "@/lib/mock-data";
+import { ArrowRight, Leaf, Sprout, Users } from "lucide-react";
 import { ProductCard } from "@/components/product-card";
+import { getProducts } from "@/lib/actions/product";
+import { getAdminStats } from "@/lib/actions/analytics";
+import { getSetting } from "@/lib/actions/settings";
 
-export default function Home() {
+export default async function Home() {
   // Get 6 latest approved products
-  const featuredProducts = MOCK_PRODUCTS.filter(p => p.isApproved).slice(0, 6);
+  const featuredProducts = await getProducts({ approvedOnly: true });
+  const stats = await getAdminStats();
+  const heroTitle = await getSetting("home_hero_title", "Etalase Digital Dusun Karang Anyar");
+  const heroSubtitle = await getSetting("home_hero_subtitle", "Temukan produk pertanian dan peternakan berkualitas langsung dari para petani dan peternak Dusun Karang Anyar. Segar, alami, dan mendukung ekonomi lokal.");
 
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-primary/5 py-20 lg:py-32 overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl space-y-6">
-            <h1 className="text-4xl md:text-6xl font-serif font-bold text-foreground leading-tight">
-              Etalase Digital <span className="text-primary">Dusun Karang Anyar</span>
+      <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=2000"
+            alt="Pemandangan Desa"
+            fill
+            className="object-cover brightness-50"
+            priority
+          />
+        </div>
+        <div className="container mx-auto px-4 relative z-10 text-center text-white">
+          <div className="max-w-3xl mx-auto space-y-6">
+            <h1 className="text-4xl md:text-6xl font-serif font-bold leading-tight drop-shadow-lg">
+              {heroTitle}
             </h1>
-            <p className="text-xl text-muted-foreground md:max-w-2xl">
-              Temukan produk pertanian dan peternakan berkualitas langsung dari para petani dan peternak Dusun Karang Anyar. Segar, alami, dan mendukung ekonomi lokal.
+            <p className="text-xl opacity-90 md:max-w-2xl mx-auto">
+              {heroSubtitle}
             </p>
-            <div className="flex flex-wrap gap-4 pt-4">
+            <div className="flex flex-wrap justify-center gap-4 pt-4">
               <Button size="lg" asChild className="rounded-full px-8">
                 <Link href="/produk">
                   Mulai Belanja <ArrowRight className="ml-2 h-4 w-4" />
@@ -42,15 +56,15 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div className="space-y-2">
-              <h3 className="text-4xl font-bold text-primary">{MOCK_STATS.totalProducts}+</h3>
+              <h3 className="text-4xl font-bold text-primary">{stats.totalProducts}+</h3>
               <p className="text-sm text-muted-foreground font-medium">Produk Lokal</p>
             </div>
             <div className="space-y-2">
-              <h3 className="text-4xl font-bold text-primary">{MOCK_STATS.totalSellers}+</h3>
+              <h3 className="text-4xl font-bold text-primary">{stats.totalSellers}+</h3>
               <p className="text-sm text-muted-foreground font-medium">Penjual Aktif</p>
             </div>
             <div className="space-y-2">
-              <h3 className="text-4xl font-bold text-primary">{MOCK_STATS.totalViews}+</h3>
+              <h3 className="text-4xl font-bold text-primary">{stats.totalViews}+</h3>
               <p className="text-sm text-muted-foreground font-medium">Pengunjung</p>
             </div>
             <div className="space-y-2">
@@ -70,7 +84,7 @@ export default function Home() {
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <Link href="/produk?kategori=Pertanian" className="group">
+            <Link href="/produk?category=Pertanian" className="group">
               <div className="bg-background rounded-2xl p-8 border text-center transition-all duration-300 hover:shadow-lg hover:border-primary/50">
                 <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <Sprout className="h-8 w-8 text-primary" />
@@ -80,7 +94,7 @@ export default function Home() {
               </div>
             </Link>
             
-            <Link href="/produk?kategori=Peternakan" className="group">
+            <Link href="/produk?category=Peternakan" className="group">
               <div className="bg-background rounded-2xl p-8 border text-center transition-all duration-300 hover:shadow-lg hover:border-secondary/50">
                 <div className="mx-auto w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <Users className="h-8 w-8 text-secondary" />
@@ -90,7 +104,7 @@ export default function Home() {
               </div>
             </Link>
             
-            <Link href="/produk?kategori=Olahan" className="group">
+            <Link href="/produk?category=Olahan" className="group">
               <div className="bg-background rounded-2xl p-8 border text-center transition-all duration-300 hover:shadow-lg hover:border-accent/50">
                 <div className="mx-auto w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <Leaf className="h-8 w-8 text-accent-foreground" />
@@ -119,7 +133,7 @@ export default function Home() {
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {featuredProducts.map(product => (
+            {featuredProducts.slice(0, 8).map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
@@ -134,24 +148,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Contact Section */}
       <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1595841696677-6489ff3f8cd1?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center"></div>
         <div className="container mx-auto px-4 relative z-10 text-center max-w-3xl">
-          <h2 className="text-3xl md:text-5xl font-serif font-bold mb-6">Warga Karang Anyar?</h2>
+          <h2 className="text-3xl md:text-5xl font-serif font-bold mb-6">Hubungi Kami</h2>
           <p className="text-lg md:text-xl mb-10 text-primary-foreground/90">
-            Mari bergabung menjadi penjual dan pasarkan produk unggulan Anda ke pasar yang lebih luas. 
-            Tingkatkan pendapatan dengan digitalisasi.
+            Punya pertanyaan seputar produk atau ingin berkunjung ke Dusun Karang Anyar? 
+            Silakan hubungi pengelola kami.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button size="lg" variant="secondary" asChild className="rounded-full text-secondary-foreground px-8 font-bold">
-              <Link href="/register">
-                Daftar Sebagai Penjual
+              <Link href="https://wa.me/628123456789" target="_blank">
+                WhatsApp Pengelola
               </Link>
             </Button>
             <Button size="lg" variant="outline" className="rounded-full bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary px-8" asChild>
               <Link href="/tentang">
-                Pelajari Cara Kerja
+                Tentang Dusun Kami
               </Link>
             </Button>
           </div>

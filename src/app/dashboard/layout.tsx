@@ -1,19 +1,38 @@
 import Link from "next/link";
-import { LayoutDashboard, Package, PlusCircle, User, LogOut, Store } from "lucide-react";
+import { LayoutDashboard, Package, PlusCircle, User, LogOut, Store, ShieldCheck } from "lucide-react";
+import { getUser } from "@/lib/actions/auth";
+import { redirect } from "next/navigation";
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const user = await getUser();
+
+  if (!user) {
+    redirect("/login");
+  }
+
+  const isAdmin = user.profile?.role === "admin";
+
   return (
     <div className="flex min-h-[calc(100vh-4rem)] flex-col md:flex-row">
       {/* Sidebar Desktop */}
       <aside className="w-full md:w-64 bg-muted/30 border-r flex-shrink-0 md:min-h-[calc(100vh-4rem)]">
         <div className="p-6">
           <div className="flex items-center gap-2 font-bold text-lg mb-8 text-foreground">
-            <Store className="h-5 w-5 text-primary" />
-            <span>Panel Penjual</span>
+            {isAdmin ? (
+              <>
+                <ShieldCheck className="h-5 w-5 text-blue-600" />
+                <span>Panel Admin</span>
+              </>
+            ) : (
+              <>
+                <Store className="h-5 w-5 text-primary" />
+                <span>Panel Penjual</span>
+              </>
+            )}
           </div>
           <nav className="space-y-2">
             <Link 
@@ -28,14 +47,7 @@ export default function DashboardLayout({
               className="flex items-center gap-3 px-3 py-2 rounded-lg text-muted-foreground font-medium transition-colors hover:bg-muted hover:text-foreground"
             >
               <Package className="h-5 w-5" />
-              Produk Saya
-            </Link>
-            <Link 
-              href="/dashboard/produk/tambah" 
-              className="flex items-center gap-3 px-3 py-2 rounded-lg text-muted-foreground font-medium transition-colors hover:bg-muted hover:text-foreground"
-            >
-              <PlusCircle className="h-5 w-5" />
-              Tambah Produk
+              Produk Dusun
             </Link>
             <Link 
               href="/dashboard/profil" 
