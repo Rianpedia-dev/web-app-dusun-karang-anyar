@@ -19,7 +19,7 @@ export function Navbar() {
                 className="object-contain"
               />
             </div>
-            <span className="font-serif font-bold text-xl hidden sm:inline-block">
+            <span className="font-serif font-bold text-lg sm:text-xl">
               Karang Anyar
             </span>
           </Link>
@@ -34,7 +34,8 @@ export function Navbar() {
             Katalog Produk
           </Link>
           <Link href="/tentang" className="transition-colors hover:text-primary">
-            Tentang </Link>
+            Tentang
+          </Link>
         </nav>
 
         <div className="flex items-center gap-2">
@@ -93,7 +94,8 @@ export function Navbar() {
                     />
                   }
                 >
-                  Tentang </SheetClose>
+                  Tentang
+                </SheetClose>
               </nav>
 
               <div className="mt-auto p-6 border-t bg-muted/20">
