@@ -11,8 +11,8 @@ export default async function Home() {
   // Get 6 latest approved products
   const featuredProducts = await getProducts({ approvedOnly: true });
   const stats = await getAdminStats();
-  const heroTitle = await getSetting("home_hero_title", "Etalase Digital Dusun Karang Anyar");
-  const heroSubtitle = await getSetting("home_hero_subtitle", "Temukan produk pertanian dan peternakan berkualitas langsung dari para petani dan peternak Dusun Karang Anyar. Segar, alami, dan mendukung ekonomi lokal.");
+  const heroTitle = await getSetting("home_hero_title", "Etalase Digital Karang Anyar");
+  const heroSubtitle = await getSetting("home_hero_subtitle", "Temukan produk pertanian dan peternakan berkualitas langsung dari para petani dan peternak Karang Anyar. Segar, alami, dan mendukung ekonomi lokal.");
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -154,7 +154,7 @@ export default async function Home() {
         <div className="container mx-auto px-4 relative z-10 text-center max-w-3xl">
           <h2 className="text-3xl md:text-5xl font-serif font-bold mb-6">Hubungi Kami</h2>
           <p className="text-lg md:text-xl mb-10 text-primary-foreground/90">
-            Punya pertanyaan seputar produk atau ingin berkunjung ke Dusun Karang Anyar? 
+            Punya pertanyaan seputar produk atau ingin berkunjung ke Karang Anyar? 
             Silakan hubungi pengelola kami.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -165,7 +165,7 @@ export default async function Home() {
             </Button>
             <Button size="lg" variant="outline" className="rounded-full bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary px-8" asChild>
               <Link href="/tentang">
-                Tentang Dusun Kami
+                Tentang Kami
               </Link>
             </Button>
           </div>

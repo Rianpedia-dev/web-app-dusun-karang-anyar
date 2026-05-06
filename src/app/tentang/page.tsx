@@ -1,10 +1,10 @@
 import { getSetting } from "@/lib/actions/settings";
 import { MapPin, Users, Target, CheckCircle2 } from "lucide-react";
 
-export default async function TentangDusun() {
-  const title = await getSetting("about_title", "Tentang Dusun Karang Anyar");
-  const description = await getSetting("about_description", "Dusun Karang Anyar adalah sebuah permukiman asri yang terletak di daerah dataran tinggi. Dengan tanah yang subur dan cuaca yang mendukung, sebagian besar warga kami bermata pencaharian sebagai petani dan peternak.");
-  const location = await getSetting("about_location", "Balai Dusun Karang Anyar, Kec. XYZ, Kab. ABC, Provinsi DEF 12345");
+export default async function Tentang() {
+  const title = await getSetting("about_title", "Tentang Karang Anyar");
+  const description = await getSetting("about_description", "Karang Anyar adalah sebuah permukiman asri yang terletak di daerah dataran tinggi. Dengan tanah yang subur dan cuaca yang mendukung, sebagian besar warga kami bermata pencaharian sebagai petani dan peternak.");
+  const location = await getSetting("about_location", "Balai Karang Anyar, Kec. XYZ, Kab. ABC, Provinsi DEF 12345");
   const mapsUrl = await getSetting("about_maps_url", "");
 
   return (
@@ -14,7 +14,7 @@ export default async function TentangDusun() {
         <div className="container mx-auto px-4 text-center max-w-3xl">
           <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-foreground">{title}</h1>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Mengenal lebih dekat potensi, masyarakat, dan semangat gotong royong yang membangun Dusun Karang Anyar.
+            Mengenal lebih dekat potensi, masyarakat, dan semangat gotong royong yang membangun Karang Anyar.
           </p>
         </div>
       </section>
@@ -27,7 +27,7 @@ export default async function TentangDusun() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img 
                 src="https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&q=80&w=1200" 
-                alt="Pemandangan Dusun Karang Anyar"
+                alt="Pemandangan Karang Anyar"
                 className="object-cover w-full h-full"
               />
             </div>

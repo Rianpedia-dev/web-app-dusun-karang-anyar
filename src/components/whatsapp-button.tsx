@@ -16,7 +16,7 @@ export function WhatsAppButton({ product, className = "" }: WhatsAppButtonProps)
     
     // Format the phone number
     const phoneNumber = product.sellerContact;
-    const message = `Halo ${product.sellerName}, saya melihat produk *${product.name}* di WebApp Marketplace Dusun Karang Anyar. Apakah produk ini masih tersedia?`;
+    const message = `Halo ${product.sellerName}, saya melihat produk *${product.name}* di WebApp Marketplace Karang Anyar. Apakah produk ini masih tersedia?`;
     
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;

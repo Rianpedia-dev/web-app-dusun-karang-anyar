@@ -10,7 +10,7 @@ dotenv.config({ path: ".env.local" });
 async function createAdmin() {
   const email = process.argv[2];
   const password = process.argv[3];
-  const name = process.argv[4] || "Admin Dusun";
+  const name = process.argv[4] || "Admin";
 
   if (!email || !password) {
     console.error("Gunakan: npx tsx src/lib/db/create-admin.ts <email> <password> <nama?>");

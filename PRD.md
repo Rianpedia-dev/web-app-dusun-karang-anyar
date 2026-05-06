@@ -1,17 +1,16 @@
 # 📄 PRODUCT REQUIREMENTS DOCUMENT (PRD)
 
-## WebApp Marketplace Dusun Karang Anyar
+## WebApp Marketplace Karang Anyar
 
 ---
 
 ## 1. 🎯 Latar Belakang
 
-Dusun Karang Anyar memiliki potensi besar di sektor **peternakan** dan **pertanian**, namun keterbatasan akses pasar membuat produk lokal sulit dikenal luas.
+Karang Anyar memiliki potensi besar di sektor **peternakan** dan **pertanian**, namun keterbatasan akses pasar membuat produk lokal sulit dikenal luas.
 
 WebApp ini bertujuan untuk:
 
-* Menjadi **etalase digital** produk dusun
-* Menghubungkan **penjual (warga)** dengan **pembeli luar**
+* Menjadi **etalase digital** produk * Menghubungkan **penjual (warga)** dengan **pembeli luar**
 * Meningkatkan **pendapatan masyarakat**
 
 ---
@@ -20,7 +19,7 @@ WebApp ini bertujuan untuk:
 
 ### Tujuan Utama:
 
-* Menampilkan produk hasil dusun secara online
+* Menampilkan produk hasil secara online
 * Mempermudah pembeli menghubungi penjual
 * Digitalisasi ekonomi desa
 
@@ -35,7 +34,7 @@ WebApp ini bertujuan untuk:
 
 ## 3. 👥 Target Pengguna
 
-### 1. Penjual (Warga Dusun)
+### 1. Penjual (Warga)
 
 * Petani
 * Peternak
@@ -57,8 +56,7 @@ WebApp ini bertujuan untuk:
 
 ### 4.1. Landing Page
 
-* Informasi dusun
-* Highlight produk unggulan
+* Informasi * Highlight produk unggulan
 * CTA: "Lihat Produk"
 
 ---
@@ -264,7 +262,7 @@ Fitur yang HARUS ada:
 * Sistem pembayaran (midtrans)
 * Chat langsung di aplikasi
 * Geo-location penjual
-* Multi dusun / ekspansi
+* Multi / ekspansi
 
 ---
 
@@ -296,9 +294,7 @@ Track:
 
 * Unit test (logic)
 * Manual testing UI
-* UAT dengan warga dusun
-
----
+* UAT dengan warga ---
 
 ## 15. 🗓️ Timeline (Estimasi)
 

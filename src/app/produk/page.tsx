@@ -27,7 +27,7 @@ export default async function ProdukKatalog({ searchParams }: ProdukKatalogProps
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8">
         <div>
           <h1 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-2">Katalog Produk</h1>
-          <p className="text-muted-foreground">Temukan berbagai hasil bumi dan peternakan Dusun Karang Anyar.</p>
+          <p className="text-muted-foreground">Temukan berbagai hasil bumi dan peternakan Karang Anyar.</p>
         </div>
         
         <div className="w-full md:w-72">

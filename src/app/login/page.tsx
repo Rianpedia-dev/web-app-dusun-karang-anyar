@@ -10,7 +10,7 @@ export default function LoginPage() {
           <div className="relative h-20 w-20 mb-4 overflow-hidden rounded-full border-2 border-primary/20 shadow-2xl bg-background p-1.5">
             <Image 
               src="/favicon.ico" 
-              alt="Logo Dusun Karang Anyar" 
+              alt="Logo Karang Anyar" 
               fill
               className="object-contain"
             />

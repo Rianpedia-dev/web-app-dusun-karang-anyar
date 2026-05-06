@@ -15,8 +15,8 @@ const fontSerif = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Dusun Karang Anyar | Etalase Digital",
-  description: "Marketplace produk pertanian dan peternakan dari Dusun Karang Anyar.",
+  title: "Karang Anyar | Etalase Digital",
+  description: "Marketplace produk pertanian dan peternakan dari Karang Anyar.",
 };
 
 import { LayoutWrapper } from "@/components/layout-wrapper";

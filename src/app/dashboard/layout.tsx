@@ -47,8 +47,7 @@ export default async function DashboardLayout({
               className="flex items-center gap-3 px-3 py-2 rounded-lg text-muted-foreground font-medium transition-colors hover:bg-muted hover:text-foreground"
             >
               <Package className="h-5 w-5" />
-              Produk Dusun
-            </Link>
+              Produk </Link>
             <Link 
               href="/dashboard/profil" 
               className="flex items-center gap-3 px-3 py-2 rounded-lg text-muted-foreground font-medium transition-colors hover:bg-muted hover:text-foreground"

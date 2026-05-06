@@ -33,6 +33,8 @@ export default async function AdminTambahProdukPage() {
           <AddProductForm 
             sellerId={user.id} 
             sellerContact={user.profile?.phone || ""} 
+            redirectPath="/admin/produk"
+            isAdmin={true}
           />
         </CardContent>
       </Card>

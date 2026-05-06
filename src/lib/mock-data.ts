@@ -19,7 +19,7 @@ export const MOCK_PRODUCTS: Product[] = [
   {
     id: "p1",
     name: "Beras Organik Karang Anyar",
-    description: "Beras organik pilihan hasil panen langsung dari petani Dusun Karang Anyar. Ditanam tanpa pestisida kimia sehingga lebih sehat dan pulen.",
+    description: "Beras organik pilihan hasil panen langsung dari petani Karang Anyar. Ditanam tanpa pestisida kimia sehingga lebih sehat dan pulen.",
     price: 15000,
     category: "Pertanian",
     imageUrl: "https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&q=80&w=600",
@@ -99,7 +99,7 @@ export const MOCK_PRODUCTS: Product[] = [
   {
     id: "p6",
     name: "Madu Hutan Liar",
-    description: "Madu asli dari lebah hutan liar di sekitar dusun. Kaya manfaat dan terjamin keasliannya.",
+    description: "Madu asli dari lebah hutan liar di sekitar. Kaya manfaat dan terjamin keasliannya.",
     price: 85000,
     category: "Olahan",
     imageUrl: "https://images.unsplash.com/photo-1587049352847-81a56d773c1c?auto=format&fit=crop&q=80&w=600",

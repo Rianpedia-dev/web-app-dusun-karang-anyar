@@ -6,7 +6,7 @@ import { getProducts } from "@/lib/actions/product";
 import { redirect } from "next/navigation";
 import { MyProductList } from "./my-product-list";
 
-export default async function ProdukDusunPage() {
+export default async function ProdukPage() {
   const user = await getUser();
   
   if (!user) {
@@ -24,11 +24,11 @@ export default async function ProdukDusunPage() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-3xl font-serif font-bold tracking-tight">
-            {isAdmin ? "Produk Dusun" : "Produk Saya"}
+            {isAdmin ? "Produk" : "Produk Saya"}
           </h1>
           <p className="text-muted-foreground">
             {isAdmin 
-              ? "Kelola semua produk yang ada di marketplace Dusun Karang Anyar." 
+              ? "Kelola semua produk yang ada di marketplace Karang Anyar." 
               : "Kelola semua produk yang Anda jual di marketplace."}
           </p>
         </div>

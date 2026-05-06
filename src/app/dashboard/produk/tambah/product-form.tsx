@@ -11,7 +11,17 @@ import { createProduct } from "@/lib/actions/product";
 import { uploadProductImage } from "@/lib/supabase/storage";
 import { useRouter } from "next/navigation";
 
-export function AddProductForm({ sellerId, sellerContact }: { sellerId: string, sellerContact: string }) {
+export function AddProductForm({ 
+  sellerId, 
+  sellerContact,
+  redirectPath = "/dashboard/produk",
+  isAdmin = false
+}: { 
+  sellerId: string, 
+  sellerContact: string,
+  redirectPath?: string,
+  isAdmin?: boolean
+}) {
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
@@ -20,6 +30,10 @@ export function AddProductForm({ sellerId, sellerContact }: { sellerId: string, 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        alert("Ukuran file terlalu besar. Maksimal 5MB.");
+        return;
+      }
       setImage(file);
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -41,23 +55,39 @@ export function AddProductForm({ sellerId, sellerContact }: { sellerId: string, 
         imageUrl = await uploadProductImage(image);
       }
 
+      // Bersihkan harga dari titik/koma jika ada (format Rupiah sering pakai titik)
+      const rawPrice = (formData.get("price") as string).replace(/\./g, "").replace(/,/g, "");
+      const parsedPrice = parseInt(rawPrice);
+
+      if (isNaN(parsedPrice)) {
+        alert("Harga harus berupa angka valid.");
+        setLoading(false);
+        return;
+      }
+
       const productData = {
-        name: formData.get("name"),
-        description: formData.get("description"),
-        price: parseInt(formData.get("price") as string),
-        category: formData.get("category"),
+        name: (formData.get("name") as string).trim(),
+        description: (formData.get("description") as string).trim(),
+        price: parsedPrice,
+        category: formData.get("category") as string,
         imageUrl: imageUrl,
         sellerId: sellerId,
-        sellerName: formData.get("sellerName"),
-        contact: sellerContact || formData.get("contact") || "", // Default contact from profile
-        isApproved: true, // Auto approve if added by admin
+        sellerName: (formData.get("sellerName") as string).trim(),
+        contact: (formData.get("contact") as string || sellerContact || "").trim(),
+        isApproved: isAdmin, // Hanya auto approve jika ditambah oleh admin
       };
 
-      await createProduct(productData);
-      router.push("/dashboard/produk");
-    } catch (error) {
+      const result = await createProduct(productData);
+      
+      if (result.success) {
+        router.push(redirectPath);
+        router.refresh();
+      } else {
+        alert(result.error || "Gagal menambahkan produk. Silakan coba lagi.");
+      }
+    } catch (error: any) {
       console.error("Error creating product:", error);
-      alert("Gagal menambahkan produk. Silakan coba lagi.");
+      alert("Terjadi kesalahan: " + (error.message || "Gagal menambahkan produk."));
     } finally {
       setLoading(false);
     }

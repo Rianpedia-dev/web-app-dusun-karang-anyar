@@ -14,7 +14,7 @@ export function Navbar() {
             <div className="relative h-10 w-10 overflow-hidden rounded-full border border-border shadow-md bg-background p-1">
               <Image 
                 src="/favicon.ico" 
-                alt="Logo Dusun Karang Anyar" 
+                alt="Logo Karang Anyar" 
                 fill
                 className="object-contain"
               />
@@ -34,8 +34,7 @@ export function Navbar() {
             Katalog Produk
           </Link>
           <Link href="/tentang" className="transition-colors hover:text-primary">
-            Tentang Dusun
-          </Link>
+            Tentang </Link>
         </nav>
 
         <div className="flex items-center gap-2">
@@ -54,7 +53,7 @@ export function Navbar() {
                   <div className="relative h-10 w-10 overflow-hidden rounded-full border border-border shadow-md bg-background p-1">
                     <Image 
                       src="/favicon.ico" 
-                      alt="Logo Dusun Karang Anyar" 
+                      alt="Logo Karang Anyar" 
                       fill
                       className="object-contain"
                     />
@@ -94,13 +93,12 @@ export function Navbar() {
                     />
                   }
                 >
-                  Tentang Dusun
-                </SheetClose>
+                  Tentang </SheetClose>
               </nav>
 
               <div className="mt-auto p-6 border-t bg-muted/20">
                 <p className="text-xs text-muted-foreground text-center">
-                  &copy; {new Date().getFullYear()} Dusun Karang Anyar<br/>
+                  &copy; {new Date().getFullYear()} Karang Anyar<br/>
                   Etalase Digital Desa
                 </p>
               </div>

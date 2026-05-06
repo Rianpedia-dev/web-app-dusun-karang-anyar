@@ -25,7 +25,7 @@ export default async function AdminLayout({
             <div className="relative h-12 w-12 overflow-hidden rounded-lg shadow-lg border border-border bg-background p-2">
               <Image 
                 src="/favicon.ico" 
-                alt="Logo Dusun Karang Anyar" 
+                alt="Logo Karang Anyar" 
                 fill
                 className="object-contain"
               />

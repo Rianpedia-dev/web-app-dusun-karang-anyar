@@ -94,7 +94,7 @@ export function MyProductList({ initialProducts, isAdmin = false }: { initialPro
                   </TableCell>
                   {isAdmin && (
                     <TableCell className="text-sm font-medium text-slate-700">
-                      {product.sellerName || "Warga Dusun"}
+                      {product.sellerName || "Warga"}
                     </TableCell>
                   )}
                   <TableCell>

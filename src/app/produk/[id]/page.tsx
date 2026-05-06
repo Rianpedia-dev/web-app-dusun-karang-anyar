@@ -145,14 +145,14 @@ export default async function DetailProduk({ params }: DetailProdukProps) {
               <ShieldCheck className="h-6 w-6 shrink-0" />
               <div className="flex flex-col">
                 <span>Terverifikasi Aman</span>
-                <span className="text-[10px] opacity-70">Produk ini telah diperiksa oleh Admin Dusun Karang Anyar</span>
+                <span className="text-[10px] opacity-70">Produk ini telah diperiksa oleh Admin Karang Anyar</span>
               </div>
             </div>
             
             <WhatsAppButton product={product} className="h-14 text-lg font-bold rounded-2xl shadow-lg shadow-green-500/20 hover:shadow-green-500/40 transition-all duration-300" />
             
             <p className="text-[11px] text-center text-muted-foreground px-4">
-              Dengan menghubungi penjual, Anda menyetujui syarat & ketentuan marketplace Dusun Karang Anyar.
+              Dengan menghubungi penjual, Anda menyetujui syarat & ketentuan marketplace Karang Anyar.
             </p>
           </div>
         </div>

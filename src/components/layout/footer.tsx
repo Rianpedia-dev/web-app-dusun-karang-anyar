@@ -12,7 +12,7 @@ export function Footer() {
               <div className="relative h-10 w-10 overflow-hidden rounded-md border border-border bg-background p-1.5 shadow-md">
                 <Image 
                   src="/favicon.ico" 
-                  alt="Logo Dusun Karang Anyar" 
+                  alt="Logo Karang Anyar" 
                   fill
                   className="object-contain"
                 />
@@ -22,7 +22,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-sm text-muted-foreground mb-4">
-              Etalase digital produk unggulan dari Dusun Karang Anyar. Menghubungkan potensi desa dengan masyarakat luas.
+              Etalase digital produk unggulan dari Karang Anyar. Menghubungkan potensi desa dengan masyarakat luas.
             </p>
             <div className="flex items-center space-x-4">
               {/* Social Media placeholders */}
@@ -39,7 +39,7 @@ export function Footer() {
                 <Link href="/produk" className="hover:text-primary transition-colors">Katalog Produk</Link>
               </li>
               <li>
-                <Link href="/tentang" className="hover:text-primary transition-colors">Tentang Dusun</Link>
+                <Link href="/tentang" className="hover:text-primary transition-colors">Tentang</Link>
               </li>
               <li>
                 <Link href="/login" className="hover:text-primary transition-colors">Login</Link>
@@ -67,7 +67,7 @@ export function Footer() {
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 mt-0.5 text-primary" />
-                <span>Balai Dusun Karang Anyar, Kec. XYZ, Kab. ABC, Provinsi DEF 12345</span>
+                <span>Balai Karang Anyar, Kec. XYZ, Kab. ABC, Provinsi DEF 12345</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-primary" />
@@ -82,7 +82,7 @@ export function Footer() {
         </div>
 
         <div className="pt-8 border-t text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Dusun Karang Anyar. Hak Cipta Dilindungi.</p>
+          <p>&copy; {new Date().getFullYear()} Karang Anyar. Hak Cipta Dilindungi.</p>
           <p className="mt-1 font-medium opacity-80 italic">by Kelompok 8 KKN UNPAL Angkatan ke-XL</p>
         </div>
       </div>

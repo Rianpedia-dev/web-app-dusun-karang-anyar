@@ -22,7 +22,7 @@ export async function getProducts(options: {
       imageUrl: products.imageUrl,
       sellerId: products.sellerId,
       sellerName: sql<string>`COALESCE(${products.sellerName}, ${users.name})`,
-      sellerLocation: sql<string>`'Dusun Karang Anyar'`,
+      sellerLocation: sql<string>`'Karang Anyar'`,
       isApproved: products.isApproved,
       createdAt: products.createdAt,
     })
@@ -57,7 +57,7 @@ export async function getProductById(id: string) {
       imageUrl: products.imageUrl,
       sellerId: products.sellerId,
       sellerName: sql<string>`COALESCE(${products.sellerName}, ${users.name})`,
-      sellerLocation: sql<string>`'Dusun Karang Anyar'`,
+      sellerLocation: sql<string>`'Karang Anyar'`,
       sellerContact: products.contact,
       isApproved: products.isApproved,
       createdAt: products.createdAt,

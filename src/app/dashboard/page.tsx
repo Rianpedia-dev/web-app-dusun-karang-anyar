@@ -65,7 +65,7 @@ export default async function DashboardHome() {
           <CardHeader>
             <CardTitle>Panduan Penjual</CardTitle>
             <CardDescription>
-              Cara meningkatkan penjualan di Marketplace Dusun.
+              Cara meningkatkan penjualan di Marketplace.
             </CardDescription>
           </CardHeader>
           <CardContent>

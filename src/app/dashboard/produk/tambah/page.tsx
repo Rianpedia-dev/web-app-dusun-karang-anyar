@@ -33,6 +33,8 @@ export default async function TambahProdukPage() {
           <AddProductForm 
             sellerId={user.id} 
             sellerContact={user.profile?.phone || ""} 
+            redirectPath="/dashboard/produk"
+            isAdmin={false}
           />
         </CardContent>
       </Card>
