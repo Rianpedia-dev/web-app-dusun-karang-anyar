@@ -45,6 +45,12 @@ export function AddProductForm({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!navigator.onLine) {
+      alert("Tidak ada koneksi internet. Silakan cek sinyal Anda dan coba lagi.");
+      return;
+    }
+
     setLoading(true);
 
     try {

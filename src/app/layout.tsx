@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 import { LayoutWrapper } from "@/components/layout-wrapper";
 
 import { ThemeProvider } from "@/components/theme-provider";
+import { ConnectivityListener } from "@/components/connectivity-listener";
 
 export default function RootLayout({
   children,
@@ -42,6 +43,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <TooltipProvider>
+            <ConnectivityListener />
             <LayoutWrapper>
               {children}
             </LayoutWrapper>

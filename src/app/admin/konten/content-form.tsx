@@ -24,6 +24,12 @@ export function ContentForm({ section, initialData }: ContentFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!navigator.onLine) {
+      toast.error("Tidak ada koneksi internet. Silakan cek sinyal Anda.");
+      return;
+    }
+
     setIsPending(true);
     
     try {
