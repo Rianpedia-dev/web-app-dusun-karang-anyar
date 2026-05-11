@@ -12,7 +12,8 @@ export default async function Tentang() {
       {/* Header */}
       <section className="bg-primary/5 py-16 md:py-24 transition-colors duration-300">
         <div className="container mx-auto px-4 text-center max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-foreground">{title}</h1>
+          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-2 text-foreground">{title}</h1>
+          <p className="text-lg md:text-xl font-medium text-muted-foreground mb-6">RT.02, RW.07</p>
           <p className="text-lg text-muted-foreground leading-relaxed">
             Mengenal lebih dekat potensi, masyarakat, dan semangat gotong royong yang membangun Karang Anyar.
           </p>

@@ -23,6 +23,7 @@ import { LayoutWrapper } from "@/components/layout-wrapper";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { ConnectivityListener } from "@/components/connectivity-listener";
+import NextTopLoader from "nextjs-toploader";
 
 export default function RootLayout({
   children,
@@ -42,6 +43,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <NextTopLoader color="#16a34a" showSpinner={false} />
           <TooltipProvider>
             <ConnectivityListener />
             <LayoutWrapper>
