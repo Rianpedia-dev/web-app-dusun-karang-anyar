@@ -132,7 +132,7 @@ export default async function Home() {
             </Button>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
             {featuredProducts.slice(0, 8).map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -159,7 +159,7 @@ export default async function Home() {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button size="lg" variant="secondary" asChild className="rounded-full text-secondary-foreground px-8 font-bold">
-              <Link href="https://wa.me/628123456789" target="_blank">
+              <Link href="https://wa.me/6283802157090" target="_blank">
                 WhatsApp Pengelola
               </Link>
             </Button>

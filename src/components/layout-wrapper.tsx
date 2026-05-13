@@ -1,10 +1,14 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
 
-export function LayoutWrapper({ children }: { children: React.ReactNode }) {
+interface LayoutWrapperProps {
+  children: React.ReactNode;
+  navbar: React.ReactNode;
+  footer: React.ReactNode;
+}
+
+export function LayoutWrapper({ children, navbar, footer }: LayoutWrapperProps) {
   const pathname = usePathname();
   
   // Hide navbar and footer on admin and dashboard pages
@@ -12,11 +16,11 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      {!isHideLayout && <Navbar />}
+      {!isHideLayout && navbar}
       <main className="flex-1">
         {children}
       </main>
-      {!isHideLayout && <Footer />}
+      {!isHideLayout && footer}
     </>
   );
 }

@@ -3,15 +3,8 @@ import Image from "next/image";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { type Product } from "@/lib/mock-data";
-import { ShoppingCart, User, ArrowUpRight } from "lucide-react";
+import { ShoppingCart, ArrowUpRight } from "lucide-react";
 
-export function formatRupiah(amount: number) {
-  return new Intl.NumberFormat("id-ID", {
-    style: "currency",
-    currency: "IDR",
-    minimumFractionDigits: 0,
-  }).format(amount);
-}
 
 interface ProductCardProps {
   product: Product;
@@ -41,10 +34,10 @@ export function ProductCard({ product }: ProductCardProps) {
             </div>
           )}
           
-          <div className="absolute top-3 left-3 z-20">
+          <div className="absolute top-2 left-2 sm:top-3 sm:left-3 z-20">
             <Badge 
               className={`
-                shadow-md border-none px-3 py-1 text-[10px] uppercase tracking-wider font-bold
+                shadow-md border-none px-2 py-0.5 text-[8px] sm:px-3 sm:py-1 sm:text-[10px] uppercase tracking-wider font-bold
                 ${product.category === "Pertanian" ? "bg-emerald-500 text-white" : 
                   product.category === "Peternakan" ? "bg-amber-500 text-white" : 
                   "bg-blue-500 text-white"}
@@ -56,25 +49,11 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
 
         {/* Content Section */}
-        <CardContent className="p-5 flex-1 flex flex-col space-y-3">
+        <CardContent className="p-3 sm:p-5 flex-1 flex flex-col space-y-2 sm:space-y-3">
           <div className="space-y-1">
-            <h3 className="font-serif font-bold text-lg leading-tight line-clamp-1 group-hover:text-primary transition-colors">
+            <h3 className="font-serif font-bold text-sm sm:text-lg leading-tight line-clamp-2 sm:line-clamp-1 group-hover:text-primary transition-colors">
               {product.name}
             </h3>
-            <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground font-medium uppercase tracking-tight">
-              <User className="h-3 w-3" />
-              <span>{product.sellerName}</span>
-            </div>
-          </div>
-          
-          <p className="text-muted-foreground text-sm line-clamp-2 leading-relaxed">
-            {product.description}
-          </p>
-          
-          <div className="pt-2">
-            <p className="text-xl font-black text-primary tracking-tight">
-              {formatRupiah(product.price)}
-            </p>
           </div>
         </CardContent>
       </Card>

@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Search, Pencil, Trash2 } from "lucide-react";
-import { formatRupiah } from "@/components/product-card";
 import { deleteProduct } from "@/lib/actions/product";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -48,7 +47,7 @@ export function AdminProductList({ initialProducts }: { initialProducts: any[] }
             <TableRow className="border-border hover:bg-transparent">
               <TableHead className="text-muted-foreground font-semibold">Produk</TableHead>
               <TableHead className="text-muted-foreground font-semibold">Penjual / Pemilik</TableHead>
-              <TableHead className="text-muted-foreground font-semibold">Kategori & Harga</TableHead>
+              <TableHead className="text-muted-foreground font-semibold">Kategori</TableHead>
               <TableHead className="text-right text-muted-foreground font-semibold">Aksi</TableHead>
             </TableRow>
           </TableHeader>
@@ -83,8 +82,6 @@ export function AdminProductList({ initialProducts }: { initialProducts: any[] }
                   <TableCell>
                     <div className="text-sm">
                       <span className="text-muted-foreground">{product.category}</span>
-                      <br/>
-                      <span className="font-bold text-foreground">{formatRupiah(product.price)}</span>
                     </div>
                   </TableCell>
                   <TableCell className="text-right">

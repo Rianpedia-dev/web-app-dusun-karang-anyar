@@ -3,7 +3,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProductById, getProducts } from "@/lib/actions/product";
 import { trackView } from "@/lib/actions/analytics";
-import { formatRupiah } from "@/components/product-card";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -93,12 +92,6 @@ export default async function DetailProduk({ params }: DetailProdukProps) {
               <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground leading-tight tracking-tight">
                 {product.name}
               </h1>
-              <div className="flex items-baseline gap-2">
-                <span className="text-3xl font-black text-primary tracking-tight">
-                  {formatRupiah(product.price)}
-                </span>
-                <span className="text-muted-foreground text-sm font-medium">/ satuan</span>
-              </div>
             </div>
 
             <div className="pt-6 border-t">
@@ -167,7 +160,7 @@ export default async function DetailProduk({ params }: DetailProdukProps) {
               Lihat Kategori Ini
             </Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8">
             {relatedProducts.map(related => (
               <ProductCard key={related.id} product={related} />
             ))}

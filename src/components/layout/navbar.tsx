@@ -67,6 +67,7 @@ export function Navbar() {
               
               <nav className="flex flex-col p-6 gap-2">
                 <SheetClose 
+                  nativeButton={false}
                   render={
                     <Link 
                       href="/" 
@@ -77,6 +78,7 @@ export function Navbar() {
                   Beranda
                 </SheetClose>
                 <SheetClose 
+                  nativeButton={false}
                   render={
                     <Link 
                       href="/produk" 
@@ -87,6 +89,7 @@ export function Navbar() {
                   Katalog Produk
                 </SheetClose>
                 <SheetClose 
+                  nativeButton={false}
                   render={
                     <Link 
                       href="/tentang" 

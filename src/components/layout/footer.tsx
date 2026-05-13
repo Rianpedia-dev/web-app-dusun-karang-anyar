@@ -1,8 +1,21 @@
 import Link from "next/link";
 import Image from "next/image";
 import { MapPin, Phone, Mail } from "lucide-react";
+import { getAllSettings } from "@/lib/actions/settings";
 
-export function Footer() {
+export async function Footer() {
+  const settings = await getAllSettings();
+  const settingsObj = settings.reduce((acc, curr) => {
+    acc[curr.key] = curr.value;
+    return acc;
+  }, {} as Record<string, string>);
+
+  const description = settingsObj.footer_description || "Etalase digital produk unggulan dari Karang Anyar. Menghubungkan potensi desa dengan masyarakat luas.";
+  const address = settingsObj.footer_address || "Balai Karang Anyar, Kec. XYZ, Kab. ABC, Provinsi DEF 12345";
+  const phone = settingsObj.footer_phone || "+62 812-3456-7890";
+  const email = settingsObj.footer_email || "info@karanganyar-market.id";
+  const copyright = settingsObj.footer_copyright || "by Kelompok 8 KKN UNPAL Angkatan ke-XL";
+
   return (
     <footer className="bg-muted/30 border-t pt-12 pb-8 transition-colors duration-300">
       <div className="container mx-auto px-4">
@@ -22,7 +35,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-sm text-muted-foreground mb-4">
-              Etalase digital produk unggulan dari Karang Anyar. Menghubungkan potensi desa dengan masyarakat luas.
+              {description}
             </p>
             <div className="flex items-center space-x-4">
               {/* Social Media placeholders */}
@@ -66,16 +79,16 @@ export function Footer() {
             <h3 className="font-semibold mb-4 text-foreground">Hubungi Kami</h3>
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
-                <MapPin className="h-4 w-4 mt-0.5 text-primary" />
-                <span>Balai Karang Anyar, Kec. XYZ, Kab. ABC, Provinsi DEF 12345</span>
+                <MapPin className="h-4 w-4 mt-0.5 text-primary shrink-0" />
+                <span>{address}</span>
               </li>
               <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4 text-primary" />
-                <span>+62 812-3456-7890</span>
+                <Phone className="h-4 w-4 text-primary shrink-0" />
+                <span>{phone}</span>
               </li>
               <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-primary" />
-                <span>info@karanganyar-market.id</span>
+                <Mail className="h-4 w-4 text-primary shrink-0" />
+                <span>{email}</span>
               </li>
             </ul>
           </div>
@@ -83,7 +96,7 @@ export function Footer() {
 
         <div className="pt-8 border-t text-center text-sm text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} Karang Anyar. Hak Cipta Dilindungi.</p>
-          <p className="mt-1 font-medium opacity-80 italic">by Kelompok 8 KKN UNPAL Angkatan ke-XL</p>
+          <p className="mt-1 font-medium opacity-80 italic">{copyright}</p>
         </div>
       </div>
     </footer>

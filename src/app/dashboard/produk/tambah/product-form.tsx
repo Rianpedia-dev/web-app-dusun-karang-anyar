@@ -61,20 +61,10 @@ export function AddProductForm({
         imageUrl = await uploadProductImage(image);
       }
 
-      // Bersihkan harga dari titik/koma jika ada (format Rupiah sering pakai titik)
-      const rawPrice = (formData.get("price") as string).replace(/\./g, "").replace(/,/g, "");
-      const parsedPrice = parseInt(rawPrice);
-
-      if (isNaN(parsedPrice)) {
-        alert("Harga harus berupa angka valid.");
-        setLoading(false);
-        return;
-      }
-
       const productData = {
         name: (formData.get("name") as string).trim(),
         description: (formData.get("description") as string).trim(),
-        price: parsedPrice,
+        price: 0,
         category: formData.get("category") as string,
         imageUrl: imageUrl,
         sellerId: sellerId,
@@ -151,7 +141,7 @@ export function AddProductForm({
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           <div className="space-y-2">
             <Label htmlFor="category">Kategori</Label>
             <Select name="category" required disabled={loading}>
@@ -164,10 +154,6 @@ export function AddProductForm({
                 <SelectItem value="Olahan">Produk Olahan</SelectItem>
               </SelectContent>
             </Select>
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="price">Harga (Rp)</Label>
-            <Input id="price" name="price" type="number" placeholder="Contoh: 15000" required disabled={loading} />
           </div>
         </div>
 

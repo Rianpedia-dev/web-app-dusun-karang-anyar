@@ -10,7 +10,7 @@ import { toast } from "sonner";
 import { Loader2, Save } from "lucide-react";
 
 interface ContentFormProps {
-  section: "home" | "about";
+  section: "home" | "about" | "footer";
   initialData: Record<string, string>;
 }
 

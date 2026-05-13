@@ -20,6 +20,8 @@ export const metadata: Metadata = {
 };
 
 import { LayoutWrapper } from "@/components/layout-wrapper";
+import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { ConnectivityListener } from "@/components/connectivity-listener";
@@ -46,7 +48,7 @@ export default function RootLayout({
           <NextTopLoader color="#16a34a" showSpinner={false} />
           <TooltipProvider>
             <ConnectivityListener />
-            <LayoutWrapper>
+            <LayoutWrapper navbar={<Navbar />} footer={<Footer />}>
               {children}
             </LayoutWrapper>
             <Toaster position="top-center" richColors />

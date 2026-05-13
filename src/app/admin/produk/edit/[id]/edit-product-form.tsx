@@ -45,7 +45,7 @@ export function EditProductForm({ product }: { product: any }) {
       const productData = {
         name: formData.get("name"),
         description: formData.get("description"),
-        price: parseInt(formData.get("price") as string),
+        price: 0,
         category: formData.get("category"),
         imageUrl: imageUrl,
         sellerName: formData.get("sellerName"),
@@ -138,7 +138,7 @@ export function EditProductForm({ product }: { product: any }) {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           <div className="space-y-2">
             <Label htmlFor="category" className="text-foreground">Kategori</Label>
             <Select name="category" defaultValue={product.category} required disabled={loading}>
@@ -151,19 +151,6 @@ export function EditProductForm({ product }: { product: any }) {
                 <SelectItem value="Olahan">Produk Olahan</SelectItem>
               </SelectContent>
             </Select>
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="price" className="text-foreground">Harga (Rp)</Label>
-            <Input 
-              id="price" 
-              name="price" 
-              type="number" 
-              defaultValue={product.price}
-              placeholder="Contoh: 15000" 
-              required 
-              disabled={loading} 
-              className="bg-background border-border focus-visible:ring-primary"
-            />
           </div>
         </div>
 

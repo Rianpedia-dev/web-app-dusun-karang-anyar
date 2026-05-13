@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Search, MoreHorizontal, Edit, Trash2, Eye, CheckCircle, XCircle } from "lucide-react";
-import { formatRupiah } from "@/components/product-card";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -64,7 +63,6 @@ export function MyProductList({ initialProducts, isAdmin = false }: { initialPro
               <TableHead>Produk</TableHead>
               {isAdmin && <TableHead>Penjual</TableHead>}
               <TableHead>Kategori</TableHead>
-              <TableHead>Harga</TableHead>
               <TableHead>Status</TableHead>
               <TableHead className="text-right">Aksi</TableHead>
             </TableRow>
@@ -72,7 +70,7 @@ export function MyProductList({ initialProducts, isAdmin = false }: { initialPro
           <TableBody>
             {filteredProducts.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={isAdmin ? 6 : 5} className="h-24 text-center text-muted-foreground">
+                <TableCell colSpan={isAdmin ? 5 : 4} className="h-24 text-center text-muted-foreground">
                   Tidak ada produk ditemukan.
                 </TableCell>
               </TableRow>
@@ -100,7 +98,6 @@ export function MyProductList({ initialProducts, isAdmin = false }: { initialPro
                   <TableCell>
                     <Badge variant="outline" className="font-normal">{product.category}</Badge>
                   </TableCell>
-                  <TableCell className="font-medium">{formatRupiah(product.price)}</TableCell>
                   <TableCell>
                     <Badge 
                       variant={product.isApproved ? "default" : "secondary"}

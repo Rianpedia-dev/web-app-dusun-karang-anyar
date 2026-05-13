@@ -53,6 +53,24 @@ export default async function AdminKontenPage() {
             />
           </CardContent>
         </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>Bagian Footer</CardTitle>
+            <CardDescription>Update informasi kontak dan deskripsi singkat pada bagian bawah halaman.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ContentForm 
+              section="footer"
+              initialData={{
+                footer_description: settingsObj.footer_description || "Etalase digital produk unggulan dari Karang Anyar. Menghubungkan potensi desa dengan masyarakat luas.",
+                footer_address: settingsObj.footer_address || "Balai Karang Anyar, Kec. XYZ, Kab. ABC, Provinsi DEF 12345",
+                footer_phone: settingsObj.footer_phone || "+62 812-3456-7890",
+                footer_email: settingsObj.footer_email || "info@karanganyar-market.id",
+                footer_copyright: settingsObj.footer_copyright || "by Kelompok 8 KKN UNPAL Angkatan ke-XL",
+              }}
+            />
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

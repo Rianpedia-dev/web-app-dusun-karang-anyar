@@ -27,7 +27,7 @@ export default async function Tentang() {
             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-border/40">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img 
-                src="https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&q=80&w=1200" 
+                src="/profil.png" 
                 alt="Pemandangan Karang Anyar"
                 className="object-cover w-full h-full"
               />
@@ -57,9 +57,9 @@ export default async function Tentang() {
                 <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
                   <Target className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-foreground">Digitalisasi Desa</h3>
+                <h3 className="text-xl font-bold mb-4 text-foreground">Digitalisasi</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  Membawa teknologi ke pelosok desa untuk mempermudah transaksi dan perluasan jangkauan pasar bagi seluruh warga.
+                  Membawa teknologi ke pelosok untuk mempermudah transaksi dan perluasan jangkauan pasar bagi seluruh warga.
                 </p>
               </div>
               <div className="bg-card rounded-3xl p-8 shadow-sm border border-border/40 transition-all hover:shadow-xl hover:-translate-y-1">
