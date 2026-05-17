@@ -197,16 +197,48 @@ export default async function Home() {
       {/* Footer / Created By */}
       <footer className="py-12 bg-background border-t">
         <div className="container mx-auto px-4 flex flex-col items-center justify-center space-y-5 text-center">
-          <div className="relative inline-flex items-center justify-center mt-2">
-            {/* Glow kuning berdenyut di belakang logo */}
-            <div className="absolute -inset-4 bg-yellow-500/60 blur-2xl rounded-full animate-pulse"></div>
-            <Image 
-              src="/logounpal.png" 
-              alt="Logo Universitas Palembang" 
-              width={70} 
-              height={70} 
-              className="relative z-10 object-contain drop-shadow-md hover:scale-110 transition-transform duration-300"
-            />
+          <div className="relative inline-flex items-center justify-center mt-2 mb-2">
+            {/* Elegant gradient glow behind the container */}
+            <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 via-yellow-500/20 to-primary/20 blur-2xl rounded-full animate-pulse opacity-70"></div>
+            
+            {/* Glassmorphism container */}
+            <div className="relative z-10 flex items-center justify-center gap-6 sm:gap-8 bg-card/50 backdrop-blur-md border border-border/40 px-6 sm:px-10 py-4 rounded-3xl sm:rounded-full shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="flex flex-col items-center gap-2 group">
+                <Image 
+                  src="/logo-klp8.png" 
+                  alt="Logo KKN Kelompok 8" 
+                  width={55} 
+                  height={55} 
+                  className="object-contain drop-shadow-sm group-hover:scale-110 transition-transform duration-300"
+                />
+              </div>
+              
+              {/* Divider */}
+              <div className="h-12 w-px bg-border/50"></div>
+              
+              <div className="flex flex-col items-center gap-2 group">
+                <Image 
+                  src="/logounpal.png" 
+                  alt="Logo Universitas Palembang" 
+                  width={75} 
+                  height={75} 
+                  className="object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300"
+                />
+              </div>
+              
+              {/* Divider */}
+              <div className="h-12 w-px bg-border/50"></div>
+              
+              <div className="flex flex-col items-center gap-2 group">
+                <Image 
+                  src="/logoberdampak.png" 
+                  alt="Logo Berdampak" 
+                  width={55} 
+                  height={55} 
+                  className="object-contain drop-shadow-sm group-hover:scale-110 transition-transform duration-300"
+                />
+              </div>
+            </div>
           </div>
           <div className="relative inline-flex items-center justify-center">
             {/* Efek glow berdenyut di belakang teks */}
