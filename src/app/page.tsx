@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Leaf, Sprout, Users } from "lucide-react";
+import { ArrowRight, Leaf, Sprout, Users, Store, Eye, ShieldCheck, Heart } from "lucide-react";
 import { ProductCard } from "@/components/product-card";
 import { getProducts } from "@/lib/actions/product";
 import { getAdminStats } from "@/lib/actions/analytics";
@@ -52,24 +52,46 @@ export default async function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 bg-background border-b">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div className="space-y-2">
-              <h3 className="text-4xl font-bold text-primary">{stats.totalProducts}+</h3>
-              <p className="text-sm text-muted-foreground font-medium">Produk Lokal</p>
+      <section className="py-16 bg-background relative overflow-hidden border-b">
+        {/* Subtle background decoration */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-full bg-primary/5 blur-[100px] rounded-full opacity-60 pointer-events-none"></div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
+            {/* Card 1 */}
+            <div className="group bg-card border border-border/60 hover:border-primary/40 shadow-sm hover:shadow-lg rounded-2xl p-4 sm:p-6 transition-all duration-300 hover:-translate-y-1">
+              <div className="w-10 h-10 sm:w-14 sm:h-14 bg-primary/10 rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-5 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300 group-hover:rotate-3">
+                <Store className="h-5 w-5 sm:h-7 sm:w-7 text-primary" />
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-1">{stats.totalProducts}+</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground font-medium">Produk Lokal</p>
             </div>
-            <div className="space-y-2">
-              <h3 className="text-4xl font-bold text-primary">{stats.totalSellers}+</h3>
-              <p className="text-sm text-muted-foreground font-medium">Penjual Aktif</p>
+
+            {/* Card 2 */}
+            <div className="group bg-card border border-border/60 hover:border-primary/40 shadow-sm hover:shadow-lg rounded-2xl p-4 sm:p-6 transition-all duration-300 hover:-translate-y-1">
+              <div className="w-10 h-10 sm:w-14 sm:h-14 bg-primary/10 rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-5 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300 group-hover:-rotate-3">
+                <Eye className="h-5 w-5 sm:h-7 sm:w-7 text-primary" />
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-1">{stats.totalViews}+</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground font-medium">Pengunjung</p>
             </div>
-            <div className="space-y-2">
-              <h3 className="text-4xl font-bold text-primary">{stats.totalViews}+</h3>
-              <p className="text-sm text-muted-foreground font-medium">Pengunjung</p>
+
+            {/* Card 3 */}
+            <div className="group bg-card border border-border/60 hover:border-primary/40 shadow-sm hover:shadow-lg rounded-2xl p-4 sm:p-6 transition-all duration-300 hover:-translate-y-1">
+              <div className="w-10 h-10 sm:w-14 sm:h-14 bg-primary/10 rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-5 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300 group-hover:rotate-3">
+                <ShieldCheck className="h-5 w-5 sm:h-7 sm:w-7 text-primary" />
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-1">100%</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground font-medium">Alami & Segar</p>
             </div>
-            <div className="space-y-2">
-              <h3 className="text-4xl font-bold text-primary">100%</h3>
-              <p className="text-sm text-muted-foreground font-medium">Alami & Segar</p>
+
+            {/* Card 4 */}
+            <div className="group bg-card border border-border/60 hover:border-primary/40 shadow-sm hover:shadow-lg rounded-2xl p-4 sm:p-6 transition-all duration-300 hover:-translate-y-1">
+              <div className="w-10 h-10 sm:w-14 sm:h-14 bg-primary/10 rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-5 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300 group-hover:-rotate-3">
+                <Heart className="h-5 w-5 sm:h-7 sm:w-7 text-primary" />
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-1">Pilihan</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground font-medium">Terbaik Warga</p>
             </div>
           </div>
         </div>
@@ -171,6 +193,30 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/* Footer / Created By */}
+      <footer className="py-12 bg-background border-t">
+        <div className="container mx-auto px-4 flex flex-col items-center justify-center space-y-5 text-center">
+          <div className="relative inline-flex items-center justify-center mt-2">
+            {/* Glow kuning berdenyut di belakang logo */}
+            <div className="absolute -inset-4 bg-yellow-500/60 blur-2xl rounded-full animate-pulse"></div>
+            <Image 
+              src="/logounpal.png" 
+              alt="Logo Universitas Palembang" 
+              width={70} 
+              height={70} 
+              className="relative z-10 object-contain drop-shadow-md hover:scale-110 transition-transform duration-300"
+            />
+          </div>
+          <div className="relative inline-flex items-center justify-center">
+            {/* Efek glow berdenyut di belakang teks */}
+            <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full animate-pulse"></div>
+            <p className="relative z-10 text-sm md:text-base text-muted-foreground font-medium px-4 py-1">
+              Website created by <span className="font-semibold text-foreground">Mahasiswa KKN Kelompok 8</span>, Universitas Palembang Angkatan XL
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
